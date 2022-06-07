@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: allcloud-exam
+  name: allcloud-exam
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: allcloud-exam
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: allcloud-exam
+    spec:
+      containers:
+      - image: 315311531132.dkr.ecr.eu-central-1.amazonaws.com/allcloud-exam:v1.0
+        name: allcloud-exam
+        ports:
+          - containerPort: 8080
+            name: http
+        env:
+        - name: REDIS_URL
+          value: redis-master:6379
+status: {}
